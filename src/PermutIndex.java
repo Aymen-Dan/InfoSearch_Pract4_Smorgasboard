@@ -84,26 +84,52 @@ public class PermutIndex {
 
 
     public void printPermutIndex() {
-        for(String key : index.keySet()) {
-            System.out.println("Key: " + key);
+        System.out.println("Permutation Index:");
+        System.out.println("------------------");
+
+        for (String key : index.keySet()) {
+            System.out.println("Word: " + key);
+            System.out.print("Permutations: ");
+
             ArrayList<String> values = index.get(key);
-            System.out.println("Values: " + values.toString());
+
+            if (values.isEmpty()) {
+                System.out.println("No permutations");
+            } else {
+                System.out.println(values.toString());
+            }
+
+            System.out.println();
         }
     }
 
     /**Save to */
     public void saveToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/results/PermutIndex.txt"))) {
+        String filePath = "src/results/PermutIndex.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("Permutation Index:\n");
+            writer.write("------------------\n");
+
             // Iterate through each key-value pair in the index
             for (Map.Entry<String, ArrayList<String>> entry : index.entrySet()) {
                 String key = entry.getKey();
                 ArrayList<String> values = entry.getValue();
 
                 // Write the key and its values to the file
-                writer.write(key + ": " + values.toString() + "\n");
+                writer.write("Word: " + key + "\n");
+                writer.write("Permutations: ");
+
+                if (values.isEmpty()) {
+                    writer.write("No permutations");
+                } else {
+                    writer.write(values.toString());
+                }
+
+                writer.write("\n\n");
             }
 
-            System.out.println("Permutation Index saved to src/results/PermutIndex.txt");
+            System.out.println("Permutation Index saved to " + filePath);
         } catch (IOException e) {
             System.out.println("Error saving PermutIndex to file: " + e.getMessage());
             e.printStackTrace();
