@@ -86,6 +86,10 @@ public class InvertedTree {
     // Save InvertedTree to a text file
     public void saveToFile(String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+
+            writer.write("Inverted Tree:\n");
+            writer.write("------------------\n");
+
             // Use a StringBuilder to build the content
             StringBuilder content = new StringBuilder();
 
