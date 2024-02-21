@@ -38,10 +38,10 @@ public class Main {
                   tg.openThreeGIndexTXT("src/results/ThreeGIndex.txt");
                     break;
                 case 4:
-                    System.out.println("Enter:");
+                    System.out.println("Enter a term:");
                     in.nextLine();
                     String input = in.nextLine();
-                    System.out.println(t.search(input));
+                    System.out.println("Document:" + t.search(input));
                     break;
                 case 5:
                     System.out.println("Enter Permutation Index (use * in place of a chunk of word):");
