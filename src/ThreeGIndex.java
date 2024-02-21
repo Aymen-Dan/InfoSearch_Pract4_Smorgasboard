@@ -8,83 +8,90 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ThreeGIndex {
+    private HashMap<String, ArrayList<String>> index;
+    private Index ind;
 
-    HashMap<String, ArrayList<String>> index;
-    Index ind;
-    public ThreeGIndex (Index ind){
+    public ThreeGIndex(Index ind) {
         this.ind = ind;
         index = new HashMap<>();
-        for(String s: ind.matrix.keySet()){
+        for (String s : ind.matrix.keySet()) {
             index.put(s, permute(s));
         }
 
         this.saveToFile();
     }
 
-    private ArrayList<String> permute(String input){
-        input=input.toLowerCase();
+    private ArrayList<String> permute(String input) {
+        input = input.toLowerCase();
         ArrayList<String> res = new ArrayList<>();
-        String word = "$"+input+"$";
-        String temp="";
-        int counter =0;
+        String word = "$" + input + "$";
+        String temp = "";
+        int counter = 0;
 
-        while(!temp.endsWith("$")){
-            temp=word.substring(counter,counter+3);
+        while (!temp.endsWith("$")) {
+            temp = word.substring(counter, counter + 3);
             res.add(temp);
             counter++;
         }
         return res;
     }
 
-    public HashMap<String,ArrayList<Integer>> search(String input) throws Exception {
+    public HashMap<String, ArrayList<Integer>> search(String input) throws Exception {
         input = input.toLowerCase();
         input = input.replaceAll("\\s+", "");
 
-        if(!input.matches("\\*?[\\w]+\\*?[\\w]+\\*?"))
+        if (!input.matches("\\*?[\\w]+\\*?[\\w]+\\*?"))
             throw new Exception("Incorrect format.");
 
-        HashMap<String,ArrayList<Integer>> res=new HashMap<>();
+        HashMap<String, ArrayList<Integer>> res = new HashMap<>();
 
-        if(!input.contains("*")) {
-            HashMap<String,ArrayList<Integer>> ret = new HashMap<>();
-            ret.put(input,ind.matrix.get(input));
+        if (!input.contains("*")) {
+            HashMap<String, ArrayList<Integer>> ret = new HashMap<>();
+            ret.put(input, ind.matrix.get(input));
             return ret;
         }
-        input = "$" + input +"$";
-        input = input.replaceAll("\\*","&");
+        input = "$" + input + "$";
+        input = input.replaceAll("\\*", "&");
 
         ArrayList<String> temp = permuteSearch(input);
 
+        // Formatting and printing the search result
+        System.out.println("Search result for '" + input + "':");
         for (String str : index.keySet()) {
-            int n1=0;
-            for(String str2 : temp){
-                int n=0;
-                for(String str1 : index.get(str)) {
-
+            int n1 = 0;
+            for (String str2 : temp) {
+                int n = 0;
+                for (String str1 : index.get(str)) {
                     if (str1.equals(str2)) {
                         n++;
                     }
-
                 }
-                if(n>0) n1++;
+                if (n > 0) n1++;
             }
-            if(n1>=temp.size())res.put(str, ind.matrix.get(str));
+            if (n1 >= temp.size()) {
+                System.out.println("Word: " + str);
+                System.out.println("Document IDs: " + ind.matrix.get(str));
+                System.out.println();
+                res.put(str, ind.matrix.get(str));
+            }
         }
 
         return res;
     }
 
-    /**Helper method for search*/
-    private ArrayList<String> permuteSearch(String input){
-        input=input.toLowerCase();
+    /**
+     * Helper method for search
+     */
+    private ArrayList<String> permuteSearch(String input) {
+        input = input.toLowerCase();
         ArrayList<String> res = new ArrayList<>();
         String word = input;
-        String temp="";
-        int counter =0;
+        String temp = "";
+        int counter = 0;
 
-        while(!temp.endsWith("$")){
-            temp=word.substring(counter,counter+3);
-            if(!temp.contains("&")) {
+        while (!temp.endsWith("$")) {
+            temp = word.substring(counter, counter + 3);
+            if (!temp.contains("&")) {
                 res.add(temp);
             }
             counter++;
@@ -92,7 +99,9 @@ public class ThreeGIndex {
         return res;
     }
 
-    /** Print Three-Gram Index to console */
+    /**
+     * Print Three-Gram Index to console
+     */
     public void printThGndex() {
         System.out.println("Three-Gram Index:");
 
@@ -111,7 +120,9 @@ public class ThreeGIndex {
         System.out.println();
     }
 
-    /** Save Three-Gram Index to ThreeGIndex.txt */
+    /**
+     * Save Three-Gram Index to ThreeGIndex.txt
+     */
     public void saveToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/results/ThreeGIndex.txt"))) {
             writer.write("3-gram Index:\n");
