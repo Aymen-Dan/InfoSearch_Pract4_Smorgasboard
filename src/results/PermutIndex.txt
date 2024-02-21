@@ -1,2 +1,8 @@
-automobile: [automobile$, utomobile$a, tomobile$au, omobile$aut, mobile$auto, obile$autom, bile$automo, ile$automob, le$automobi, e$automobil, $automobile]
-locomotive: [locomotive$, ocomotive$l, comotive$lo, omotive$loc, motive$loco, otive$locom, tive$locomo, ive$locomot, ve$locomoti, e$locomotiv, $locomotive]
+Permutation Index:
+------------------
+Word: automobile
+Permutations: [automobile$, utomobile$a, tomobile$au, omobile$aut, mobile$auto, obile$autom, bile$automo, ile$automob, le$automobi, e$automobil, $automobile]
+
+Word: locomotive
+Permutations: [locomotive$, ocomotive$l, comotive$lo, omotive$loc, motive$loco, otive$locom, tive$locomo, ive$locomot, ve$locomoti, e$locomotiv, $locomotive]
+
