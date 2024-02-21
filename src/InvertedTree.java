@@ -3,24 +3,18 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class InvertedTree {
     TrieNode root;
 
-    public InvertedTree() {
+    public InvertedTree(String sourceFilePath) {
         root = new TrieNode();
+        String resultFilePath = "src/results/InvertedTree.txt";
+        insertFromFiles(sourceFilePath);
+        saveToFile(resultFilePath);
     }
 
-    public void insert(String term) {
-        TrieNode node = root;
-        for (char c : term.toCharArray()) {
-            node.children.putIfAbsent(c, new TrieNode());
-            node = node.children.get(c);
-            node.terms.add(term);
-        }
-    }
 
     public ArrayList<String> search(String prefix) {
         TrieNode node = root;
@@ -48,13 +42,13 @@ public class InvertedTree {
             if (!childNode.terms.isEmpty()) {
                 System.out.println(currentTerm + ": " + childNode.terms);
             }
-
             // Recursively traverse child nodes
             printInvTree(childNode, currentTerm);
         }
     }
 
-    // Method to insert terms from .txt files in the /res folder
+
+    /** Method to insert terms from .txt files in the /res folder*/
     public void insertFromFiles(String folderPath) {
 
         // Iterate through files in the folder and insert each term into the tree
@@ -79,6 +73,15 @@ public class InvertedTree {
         }
     }
 
+
+    public void insert(String term) {
+        TrieNode node = root;
+        for (char c : term.toCharArray()) {
+            node.children.putIfAbsent(c, new TrieNode());
+            node = node.children.get(c);
+            node.terms.add(term);
+        }
+    }
 
     // Save InvertedTree to a text file
     public void saveToFile(String filePath) {
