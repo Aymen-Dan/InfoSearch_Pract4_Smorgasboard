@@ -41,20 +41,19 @@ public class Main {
                     System.out.println("Enter:");
                     in.nextLine();
                     String input = in.nextLine();
-                    t.search(input);
-                    //System.out.println("Sorry! Tree Search doesn't work :(");
+                    System.out.println(t.search(input));
                     break;
                 case 5:
                     System.out.println("Enter Permutation Index (use * in place of a chunk of word):");
                     in.nextLine();
                     input = in.nextLine();
-                   System.out.println(pi.search(input));
+                    System.out.println(pi.search(input));
                     break;
                 case 6:
                     System.out.println("Enter 3-gram Index (use * in place of a chunk of word):");
                     in.nextLine();
                     input = in.nextLine();
-                   System.out.println(tg.search(input));
+                    System.out.println(tg.search(input));
                     break;
                 default:
                     System.out.println("Option unavailable. Please choose from the list");
