@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,6 +44,7 @@ public class Index {
             }
         }
 
+        this.saveToFile();
     }
 
     //checking and adding words
@@ -164,6 +166,41 @@ public class Index {
                 out.write((num+" ").getBytes());
             }
             out.write(("\n ").getBytes());
+        }
+    }
+
+    public void saveToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/results/Index.txt"))) {
+            // Header
+            writer.write(String.format("%-20s | %-20s%n", "Word", "Document IDs"));
+            writer.write("------------------------------------------------\n");
+
+            // Iterate through each term in the index
+            for (String word : matrix.keySet()) {
+                writer.write(String.format("%-20s | %-20s%n", word, matrix.get(word)));
+            }
+
+            System.out.println("Index saved to src/results/Index.txt");
+        } catch (IOException e) {
+            System.out.println("Error saving index to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void openIndexTXT(String filePath) throws IOException {
+        File file = new File(filePath);
+
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            System.out.println("\nOpening the file...");
+
+            if (file.exists()) {
+                desktop.open(file);
+            } else {
+                System.out.println("File not found: " + filePath + "; Please restart the program.");
+            }
+        } else {
+            System.out.println("Desktop is not supported.");
         }
     }
 
