@@ -1,0 +1,4 @@
+Word                 | Document IDs        
+------------------------------------------------
+automobile           | [0]                 
+locomotive           | [1]                 
