@@ -8,8 +8,6 @@ public class Main {
         Index idx = new Index(filePath);
 
         InvertedTree t = new InvertedTree(filePath);
-//        t.insertFromFiles(filePath);
-//        t.saveToFile("src/results/InvertedTree.txt");
 
         PermutIndex pi = new PermutIndex(idx);
 
@@ -32,7 +30,7 @@ public class Main {
                     t.openInvertedTreeTXT("src/results/InvertedTree.txt");
                     break;
                 case 2:
-                  //pi.printPermutIndex();
+                  pi.printPermutIndex();
                     pi.openPermutIndexTXT("src/results/PermutIndex.txt");
 
                     break;
