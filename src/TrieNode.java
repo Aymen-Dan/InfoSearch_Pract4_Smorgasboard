@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class TreeNode {
-    HashMap<Character, TreeNode> children;
+class TrieNode {
+    HashMap<Character, TrieNode> children;
     ArrayList<String> terms;
 
-    TreeNode() {
+    TrieNode() {
         children = new HashMap<>();
         terms = new ArrayList<>();
     }
