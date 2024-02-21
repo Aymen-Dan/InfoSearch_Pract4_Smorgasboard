@@ -11,7 +11,7 @@ public class Main {
 
         PermutIndex pi = new PermutIndex(idx);
 
-        //KIndex k = new KIndex(idx);
+        ThreeGIndex tg = new ThreeGIndex(idx);
 
         Scanner in = new Scanner(System.in);
 
@@ -30,12 +30,12 @@ public class Main {
                     t.openInvertedTreeTXT("src/results/InvertedTree.txt");
                     break;
                 case 2:
-                  pi.printPermutIndex();
+                  //pi.printPermutIndex();
                     pi.openPermutIndexTXT("src/results/PermutIndex.txt");
-
                     break;
                 case 3:
-                  //  k.printKIndex();
+                  tg.printThGndex();
+
                     break;
                 case 4:
                     System.out.println("Enter:");
