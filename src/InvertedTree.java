@@ -15,12 +15,11 @@ public class InvertedTree {
         saveToFile(resultFilePath);
     }
 
-
     public ArrayList<String> search(String prefix) {
         TrieNode node = root;
         for (char c : prefix.toCharArray()) {
             if (!node.children.containsKey(c)) {
-                return new ArrayList<>(); // Prefix not found
+                return new ArrayList<>(); //Prefix not found
             }
             node = node.children.get(c);
         }
@@ -79,8 +78,8 @@ public class InvertedTree {
         for (char c : term.toCharArray()) {
             node.children.putIfAbsent(c, new TrieNode());
             node = node.children.get(c);
-            node.terms.add(term);
         }
+        node.terms.add(term);
     }
 
     // Save InvertedTree to a text file
