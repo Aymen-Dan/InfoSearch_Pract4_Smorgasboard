@@ -1,0 +1,8 @@
+3-gram Index:
+------------------
+Word: automobile
+3-grams: $au, aut, uto, tom, omo, mob, obi, bil, ile, le$
+
+Word: locomotive
+3-grams: $lo, loc, oco, com, omo, mot, oti, tiv, ive, ve$
+
